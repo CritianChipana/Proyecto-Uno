@@ -36,6 +36,14 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
+        
+        Route::prefix('web-api')
+        ->namespace($this->namespace)
+        ->group(base_path('app/Modules/Reports/Routes/api.php'));
+
+        Route::prefix('web-api')
+        ->namespace($this->namespace)
+        ->group(base_path('app/Modules/Authentication/Routes/api.php'));
 
         $this->routes(function () {
             Route::prefix('api')
